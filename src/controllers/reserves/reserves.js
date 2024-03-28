@@ -1,5 +1,5 @@
 const admin = require("firebase-admin");
-const {updateWs, pool} = require("../systems/controllers");
+const {getWsClient, pool} = require("../systems/controllers");
 
 
 // crear Reservas 
@@ -37,9 +37,9 @@ const createdReserves = async (req, res) => {
   
       res.status(200).send('reserva creada con éxito');
   
-      if (updateWs.getWsClient()) {
-        updateWs.getWsClient().send('updates Reserves');
-        updateWs.getWsClient().send(`update reserves client ${user_id}`);
+      if (getWsClient()) {
+        getWsClient().send('updates Reserves');
+        getWsClient().send(`update reserves client ${user_id}`);
       }
       
     } catch (error) {
@@ -90,8 +90,8 @@ const createdReserves = async (req, res) => {
     
         res.status(200).json({ message: 'Estado actualizado correctamente' });
   
-        if (updateWs.getWsClient()) {
-          updateWs.getWsClient().send('updates Reserves');
+        if (getWsClient()) {
+          getWsClient().send('updates Reserves');
         }
   
       } catch (error) {

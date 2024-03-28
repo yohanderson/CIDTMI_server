@@ -28,7 +28,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 //cors
-const whilist = ['http://192.168.1.101:3263/dashboard']
+//const whilist = ['http://192.168.1.101:3263/dashboard']
 app.use(cors());
 
 // routes
